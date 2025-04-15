@@ -6,49 +6,59 @@
             </span>
         </h1>
     </x-slot>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Mon espace étudiant</title>
+    </head>
+    <body>
+    <h1>Mes bilans et tâches</h1>
 
-    <div class="container">
-        <h1>Bienvenue, {{ auth()->user()->name }}</h1>
+    <!-- Formulaire pour ajouter une tâche de vie commune -->
+    <h2>Ajouter une tâche</h2>
 
-        <h2>Bilans de compétence</h2>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Statut</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($competencyAssessments as $assessment)
-                <tr>
-                    <td>{{ $assessment->title }}</td>
-                    <td>{{ $assessment->description }}</td>
-                    <td>{{ ucfirst($assessment->status) }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+        @csrf
+        <label>Date :</label>
+        <input type="date" name="date" required><br><br>
 
-        <h2>Tâches de vie commune</h2>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Statut</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($lifeTasks as $task)
-                <tr>
-                    <td>{{ $task->title }}</td>
-                    <td>{{ $task->description }}</td>
-                    <td>{{ ucfirst($task->status) }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    </div>
+        <label>Titre de la tâche :</label>
+        <input type="text" name="title" required><br><br>
+
+        <label>Heure :</label>
+        <input type="time" name="hour" required><br><br>
+
+        <button type="submit">Ajouter</button>
+    </form>
+
+    <hr>
+
+    <!-- Affichage des bilans de compétences -->
+    <h2>Mes bilans de compétence</h2>
+    <ul>
+        @forelse ($competencyAssessments as $assessment)
+            <li>
+                {{ $assessment->title ?? 'Sans titre' }} - Statut : {{ $assessment->status }}
+            </li>
+        @empty
+            <li>Aucun bilan pour le moment.</li>
+        @endforelse
+    </ul>
+
+    <hr>
+
+    <!-- Affichage des tâches de vie commune -->
+    <h2>Mes tâches de vie commune</h2>
+    <ul>
+        @forelse ($lifeTasks as $task)
+            <li>
+                {{ $task->title }} ({{ $task->date }} à {{ $task->hour }}) - {{ $task->status }}
+            </li>
+        @empty
+            <li>Aucune tâche enregistrée.</li>
+        @endforelse
+    </ul>
+    </body>
+    </html>
+
 </x-app-layout>
 

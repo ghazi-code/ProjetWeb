@@ -21,11 +21,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware('verified')->group(function () {
-        // Dashboard
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         // Cohorts
         Route::get('/cohorts', [CohortController::class, 'index'])->name('cohort.index');
+
         Route::get('/cohort/{cohort}', [CohortController::class, 'show'])->name('cohort.show');
 
         // Teachers
@@ -44,7 +43,10 @@ Route::middleware('auth')->group(function () {
         route::get('retros', [RetroController::class, 'index'])->name('retro.index');
 
         // Common life
-        Route::get('/common-life', [CommonLifeController::class, 'index'])->name('commonLife.index');    });
+        Route::get('/common-life', [CommonLifeController::class, 'index'])->name('commonLife.index');
+        // Dashboard
+        Route::get('/dashboard', [DashboardController::class, 'overview'])->name('admin.dashboard');
+    });
 
 });
 
