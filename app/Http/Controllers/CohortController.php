@@ -7,27 +7,36 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CohortController extends Controller
 {
-    /**
-     * Display all available cohorts
-     * @return Factory|View|Application|object
-     */
-    public function index() {
-        return view('pages.cohorts.index');
+    // Toutes les promotions (si admin ou enseignant avec droits)
+    public function index()
+    {
+        $cohorts = Cohort::all();
+        return view('cohorts.index', compact('cohorts'));
     }
 
+    // Promotions de l'enseignant connecté
+    public function myCohorts()
+    {
+        $user = Auth::user();
+        $cohorts = $user->cohorts; // grâce à la relation belongsToMany
+        return view('cohorts.my', compact('cohorts'));
+    }
 
-    /**
-     * Display a specific cohort
-     * @param Cohort $cohort
-     * @return Application|Factory|object|View
-     */
-    public function show(Cohort $cohort) {
+    // Promotions de l'année en cours pour dashboard
+    public function currentCohorts()
+    {
+        $user = Auth::user();
+        $year = now()->year;
 
-        return view('pages.cohorts.show', [
-            'cohort' => $cohort
-        ]);
+        $cohorts = $user->cohorts()
+            ->where('year_start', '<=', $year)
+            ->where('year_end', '>=', $year)
+            ->get();
+
+        return view('dashboard.partials.cohorts', compact('cohorts'));
     }
 }

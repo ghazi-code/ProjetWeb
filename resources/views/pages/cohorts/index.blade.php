@@ -6,7 +6,15 @@
             </span>
         </h1>
     </x-slot>
+    <h1>Mes Promotions</h1>
 
+    <ul>
+        @forelse($cohorts as $cohort)
+            <li>{{ $cohort->name }}</li>
+        @empty
+            <li>Aucune promotion trouvée</li>
+        @endforelse
+    </ul>
     <!-- begin: grid -->
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
         <div class="lg:col-span-2">
