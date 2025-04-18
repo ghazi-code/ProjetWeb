@@ -98,3 +98,16 @@ npm run dev
 - 🧠 Génération automatique de QCM par langage sélectionné
 - ✅ Système de Kanban pour les rétrospectives
 - 📈 Statistiques d’usage et suivi pédagogique
+
+## 🚧 Story reussites
+
+- La 1, 2 et 3 ont été faites
+- La story 2, ancien backlog, a été faite, mais le backlog a changé depuis
+- Les trois sont fonctionnelles
+- Il manque juste le front pour l'envoi du formulaire sur la 3
+
+
+## 🚧 Story pas reussites
+
+- La 4, 5 et 6 ont pas été faites
+
