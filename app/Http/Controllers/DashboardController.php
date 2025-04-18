@@ -13,7 +13,8 @@ class DashboardController extends Controller
         $userRole = auth()->user()->school()->pivot->role;
 
         return view('pages.dashboard.dashboard-' . $userRole ,
-            ['studentsCount' => User::count(),]);
+            [
+                'studentsCount' => User::count(),]);
 
     }
 }
