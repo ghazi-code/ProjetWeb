@@ -33,6 +33,10 @@ Route::middleware('auth')->group(function () {
 
         // Students
         Route::get('/students', [StudentController::class, 'index'])->name('student.index');
+        Route::get('/students', [StudentController::class, 'index'])->name('student.index');
+        Route::post('/students', [StudentController::class, 'store'])->name('student.store');
+        Route::put('/students/{student}', [StudentController::class, 'update'])->name('student.update');
+        Route::delete('/students/{student}', [StudentController::class, 'destroy'])->name('student.destroy');
 
         // Knowledge
         Route::get('/knowledge', [KnowledgeController::class, 'index'])->name('knowledge.index');

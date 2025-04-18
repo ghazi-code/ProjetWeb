@@ -21,13 +21,23 @@
                             <!-- Promotions -->
                             <div class="p-4 bg-white shadow rounded text-center">
                                 <div class="text-sm text-gray-500">Promotions</div>
-                                <div class="text-2xl font-semibold text-blue-600">{{ $studentsCount }}</div>
+                                <div class="text-2xl font-semibold text-blue-600">{{ $promotionsCount }}</div>
+                            </div>
+                            <!-- Étudiants -->
+                            <div class="p-4 bg-white shadow rounded text-center">
+                                <div class="text-sm text-gray-500">Étudiants</div>
+                                <div class="text-2xl font-semibold text-green-600">{{ $studentsCount }}</div>
                             </div>
 
+                            <!-- Enseignants -->
+                            <div class="p-4 bg-white shadow rounded text-center">
+                                <div class="text-sm text-gray-500">Enseignants</div>
+                                <div class="text-2xl font-semibold text-orange-600">{{ $teachersCount }}</div>
+                            </div>
                             <!-- Groupes (statique) -->
                             <div class="p-4 bg-white shadow rounded text-center">
                                 <div class="text-sm text-gray-500">Groupes</div>
-                                <div class="text-2xl font-semibold text-red-600">6</div>
+                                <div class="text-2xl font-semibold text-red-600">{{ $groupsCount }}</div>
                             </div>
                         </div>
                     </div>

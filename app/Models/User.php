@@ -83,9 +83,26 @@ class User extends Authenticatable
             ->first();
     }
 
-    public function Cohort()
+    public function cohorts(): BelongsToMany
     {
-
         return $this->belongsToMany(Cohort::class, 'cohort_teacher', 'teacher_id', 'cohort_id');
     }
+
+    public function studentCohorts(): BelongsToMany
+    {
+        return $this->belongsToMany(Cohort::class, 'cohort_student', 'student_id', 'cohort_id');
+    }
+
+    public function schoolRelation()
+    {
+        return $this->belongsToMany(School::class, 'users_schools')->withPivot('role');
+    }
+
+    public function scopeStudents($query)
+    {
+        return $query->whereHas('schoolRelation', function ($q) {
+            $q->where('role', 'student');
+        });
+    }
+
 }

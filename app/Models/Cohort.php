@@ -12,5 +12,6 @@ class Cohort extends Model
     {
         return $this->belongsToMany(User::class, 'cohort_teacher', 'cohort_id', 'teacher_id');
     }
+
 }
 
